@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -27,27 +28,30 @@ public class BasePage {
     }
 
     public void click(WebElement element) throws Exception{
-
-        //webDriverWait = new WebDriverWait(driver,waitTime);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        element.click();
+    }
+    public void hoverClick(WebElement element) throws Exception{
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
         Actions actions = new Actions(driver);
 
         int retryCount=0;
         while (retryCount<retries)
-        try {
-            webDriverWait.until(ExpectedConditions.visibilityOf(element));
-            webDriverWait.until(ExpectedConditions.elementToBeClickable(element));
+            try {
+                webDriverWait.until(ExpectedConditions.visibilityOf(element));
+                webDriverWait.until(ExpectedConditions.elementToBeClickable(element));
 
-            actions.moveToElement(element).build().perform(); //hover
-            element.click();
-        }
-        catch (Exception e) {
-         retryCount++;
-         if (retryCount==retries){
-             throw new Exception("Failed to click element:");
-         }
-        }
+                actions.moveToElement(element).build().perform(); //hover
+                element.click();
+            }
+            catch (Exception e) {
+                retryCount++;
+                if (retryCount==retries){
+                    throw new Exception("Failed to click element:");
+                }
+            }
+
     }
-
     public String getCurentTimeDate(){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();

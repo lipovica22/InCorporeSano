@@ -18,12 +18,12 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
     DriverManager driverManager;
-    WebDriver driver;
+    public WebDriver driver;
     String path = "src/results/screenshots/";
 
     public void initialization(String type) throws Exception {
         driverManager =  DriverManagerFactory.getDriverManager(type);
-        driver=driverManager.getDriver();
+        driver = driverManager.getDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
@@ -32,15 +32,29 @@ public class BaseTest {
     }
 
     public void openApp(String env) throws Exception {
-        env = env.toLowerCase();
+        //env = env.toLowerCase();
         switch (env) {
-            case "DEVELOPMENT": {
-                driver.get("0");
+            case "HomePage": {
+                driver.get("https://mediately.co/rs");
             }
             break;
 
-            case "TEST": {
+            case "VaskularnaStarost": {
+                driver.get("https://mediately.co/rs/tools/VascularAgeVeryHigh");
+            }
+            break;
+
+            case "TEST_RS": {
                 driver.get("https://t-score.uniqa.rs/POS/Serbia/NoAD");
+            }
+            break;
+
+            case "TEST_MNE": {
+                driver.get("https://mne-test-iis2.stech.loc/POS/Montenegro/NoAD");
+            }
+            break;
+            case "TEST_HR": {
+                driver.get("https://aasv098.uniqa.hr/POS/Croatia/NoAD/");
             }
             break;
 
@@ -53,7 +67,7 @@ public class BaseTest {
             }
             break;
             default:
-                driver.get("https://t-score.uniqa.rs/POS/Serbia/NoAD");
+                //driver.get("https://t-score.uniqa.rs/POS/Serbia/NoAD");
         }
     }
     public void takeScreenshot(String fileName) throws IOException {

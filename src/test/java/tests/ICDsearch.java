@@ -1,14 +1,15 @@
 package tests;
 
+import io.qameta.allure.Description;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pages.Login;
+import pages.ICD;
 
 import java.io.IOException;
 
-public class sCoreRS extends BaseTest {
+public class ICDsearch extends BaseTest {
 
     @BeforeMethod
     @Parameters({"browser","env"})
@@ -16,8 +17,6 @@ public class sCoreRS extends BaseTest {
         initialization(browser);
         openApp(env);
     }
-
-
     @AfterMethod
     @Parameters({"quit"})
     public void tearDown (String quit) throws IOException {
@@ -25,18 +24,13 @@ public class sCoreRS extends BaseTest {
         if (quit.equalsIgnoreCase("Yes")) {
            quit();
         }
-        takeScreenshot("slika");
     }
-
     @Test
-    @Parameters({"usernameAgent","passwordAgent"})
-    public void lifeRS() throws Exception {
-        new Login(driver).setUsernameAgent();
-        new Login(driver).setPasswordAgent();
-        new Login(driver).clickSubmit();
-        System.out.println("test");
-    }
+    @Description("Pretaga bolesti po šifri ili nazivu")
+    public void ICDSearch() throws Exception {
+        new ICD(driver).setPretrazivanje();
 
+    }
 
 
 
