@@ -50,7 +50,6 @@ public class BasePage {
                     throw new Exception("Failed to click element:");
                 }
             }
-
     }
     public String getCurentTimeDate(){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");

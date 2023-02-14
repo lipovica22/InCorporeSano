@@ -1,12 +1,24 @@
 Feature: Login
-  login test as agent
+  Login test as registered user
 
- Scenario: BA TEST credential
+ Scenario: Login with valid credentials
 
-   Given login on app BA Test
-   When enter Agent username
-   And enter Agent password
+   Given Open app ICD
+   When accept cookies
+   And click on Login
+   And enter email
+   And enter password
    And click on Submit button
    Then Loged in
-   And  page is Products
+   And  click on AllTools
+   Then page is tools
+   And click on VascularAgeCalkulator
+   Then set male gender
+   And set age
+   And choose nonsmoker
+   And choose blood pressure
+   And choose HDL
+   Then check vaslukar age
+   And check risk
+
 

@@ -14,10 +14,10 @@ public class VascularAge extends BasePage{
         super(driver);
         PageFactory.initElements(driver,this);
     }
-    @FindBy(css=".sc-eKBdFk.cxZmQh")
+    @FindBy(xpath="//*[contains(text(),'Vaskularna starost:')]")
     WebElement VaskularnaStarost;
 
-    @FindBy(css=".sc-bUbCnL bDRQXj")
+    @FindBy(xpath="//*[contains(text(),'Rizik')]")
     WebElement Rizik;
 
 
@@ -51,7 +51,9 @@ public class VascularAge extends BasePage{
     public void setPolMuski() throws Exception {
         click(Musko);
     }
+    public void getOdabraniPol() throws Exception {
 
+    }
     public void setPolZenski() throws Exception {
         click(Zensko);
     }
@@ -85,15 +87,21 @@ public class VascularAge extends BasePage{
         HDLHolesterol.click();
         HDLHolesterolValue.sendKeys("4,0–4,9 mmol/L (155–190 mg/dL)");
     }
-    public void getVaskularnaStarost() throws Exception {
+    public void getVaskularnaStarostM() throws Exception {
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight)");
-        String vvv=VaskularnaStarost.getText();
         Assert.assertTrue(VaskularnaStarost.getText().equals("Vaskularna starost: 47 godina"));
     }
-
-    public void getRizik() throws Exception {
+    public void getVaskularnaStarostZ() throws Exception {
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight)");
-        String vvv=VaskularnaStarost.getText();
-        Assert.assertTrue(VaskularnaStarost.getText().equals("Rizik SCORE: 5 %"));
+        Assert.assertTrue(VaskularnaStarost.getText().equals("Vaskularna starost: 48 godina"));
+    }
+    public void getRizikM() throws Exception {
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight)");
+        String rizik = Rizik.getText();
+        Assert.assertTrue(Rizik.getText().equals("Rizik SCORE: 5 %"));
+    }
+    public void getRizikZ() throws Exception {
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight)");
+        Assert.assertTrue(Rizik.getText().equals("Rizik SCORE: 4 %"));
     }
 }

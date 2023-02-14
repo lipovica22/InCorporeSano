@@ -15,16 +15,21 @@ public class HomePage extends BasePage{
         super(driver);
         PageFactory.initElements(driver,this);
     }
-
+    @FindBy(css=".navbar-nav>a[href$='icd']")
+    WebElement ICD;
     @FindBy (css="div.sc-e9f474d6-3>button:first-child>div:first-child")
     WebElement Prijava;
 
     @FindBy(xpath="//button[text()='Razumem']")
     WebElement Razumem;
-
+    @FindBy(xpath="//h6[contains(text(),'BMI')]")
+    WebElement BMI;
     @FindBy (xpath="//span[text()='Svi alati']")
     WebElement SviAlati;
-
+    public void clickICD() throws Exception {
+        click(ICD);
+        Thread.sleep(2000);
+    }
     public void Prijava() throws Exception {
         click(Prijava);
     }
@@ -33,6 +38,9 @@ public class HomePage extends BasePage{
     }
     public void clickSviAlati() throws Exception {
         click(SviAlati);
+    }
+    public void clickBMI() throws Exception {
+        click(BMI);
     }
 
 }

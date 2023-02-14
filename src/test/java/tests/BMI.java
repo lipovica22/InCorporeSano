@@ -1,16 +1,15 @@
 package tests;
 
 import io.qameta.allure.Description;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import pages.BMIPage;
 import pages.HomePage;
-import pages.VascularAge;
 import java.io.IOException;
 
-public class VascularAgeDef extends BaseTest {
+public class BMI extends BaseTest{
 
     @BeforeMethod
     @Parameters({"browser","env"})
@@ -23,22 +22,17 @@ public class VascularAgeDef extends BaseTest {
     public void tearDown (String quit) throws IOException {
         takeScreenshot("slika" + System.currentTimeMillis());
         if (quit.equalsIgnoreCase("Yes")) {
-           quit();
+            quit();
         }
     }
     @Test
-    @Parameters({"Starost"})
-    @Description("Određivanje vaskularne starosti")
-    public void vascularAge() throws Exception {
+    @Description("Određivanje BMI")
+    public void calkBMI() throws Exception {
         new HomePage(driver).acceptCoocies();
-        new VascularAge(driver).setPolMuski();
-        new VascularAge(driver).setStarost();
-        new VascularAge(driver).setNepusac();
-        new VascularAge(driver).setPritisak120139();
-        new VascularAge(driver).setHDLHolesterol();
-        new VascularAge(driver).getVaskularnaStarostM();
+        new HomePage(driver).clickBMI();
+        new BMIPage(driver).setTezina();
+        new BMIPage(driver).setVisina();
+        new BMIPage(driver).opisRezultata();
+        new BMIPage(driver).rezultat();
     }
-
-
-
 }

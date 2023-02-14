@@ -8,12 +8,13 @@ import org.testng.annotations.Test;
 @Test
 @CucumberOptions(
         features = "src/test/java/features",
-        glue = "sCore-Automation"
+        glue = "steps",
+        plugin ={"io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm"}
 )
 public class Runner extends AbstractTestNGCucumberTests {
-    @DataProvider(parallel = false)
+   @DataProvider(parallel = false)
     @Override
-    public Object[][] scenarios() {
-        return super.scenarios();
+   public Object[][] scenarios() {
+       return super.scenarios();
     }
 }

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-
-
-<suite name="InCorporeSano" >
+<suite name="InCorporeSano" thread-count="2" data-provider-thread-count="2">
 
     <parameter name="browser" value="CHROME"/>
-    <parameter name="quit" value="no"/>
+    <parameter name="quit" value="yes"/>
     <parameter name="env" value="HomePage"/>
 
     <test name="VascularAge">
 
         <classes>
             <class name="tests.Login"/>
+            <class name="tests.BMI"/>
+            <class name="tests.ICDsearch"/>
         </classes>
 
     </test>

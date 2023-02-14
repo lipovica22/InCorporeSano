@@ -43,31 +43,12 @@ public class BaseTest {
                 driver.get("https://mediately.co/rs/tools/VascularAgeVeryHigh");
             }
             break;
-
-            case "TEST_RS": {
-                driver.get("https://t-score.uniqa.rs/POS/Serbia/NoAD");
-            }
-            break;
-
-            case "TEST_MNE": {
-                driver.get("https://mne-test-iis2.stech.loc/POS/Montenegro/NoAD");
-            }
-            break;
-            case "TEST_HR": {
-                driver.get("https://aasv098.uniqa.hr/POS/Croatia/NoAD/");
-            }
-            break;
-
-            case "INTEGRATION": {
-                driver.get("01");
-            }
-            break;
-            case "PRODUCTION": {
-                driver.get("022");
+            case "BMI": {
+                driver.get("https://mediately.co/rs/tools/VascularAgeVeryHigh");
             }
             break;
             default:
-                //driver.get("https://t-score.uniqa.rs/POS/Serbia/NoAD");
+                driver.get("https://mediately.co/rs");
         }
     }
     public void takeScreenshot(String fileName) throws IOException {

@@ -33,29 +33,32 @@ public class Login extends BaseTest {
     @Test
     @Description("Prijava i provera Vaskularne starosti - Muškarac")
     public void vascularAgeM() throws Exception {
-        new HomePage(driver).acceptCoocies();
-        new HomePage(driver).Prijava();
 
-        new LoginPage(driver).setEmail();
-        new LoginPage(driver).setLozinka();
-        new LoginPage(driver).clickSubmit();
+            new HomePage(driver).acceptCoocies();
+            new HomePage(driver).Prijava();
 
-        new HomePage(driver).clickSviAlati();
+            new LoginPage(driver).setEmail();
+            new LoginPage(driver).setLozinka();
+            new LoginPage(driver).clickSubmit();
 
-        new Tools(driver).clickKalkulatorVaskularneStarosti();
+            new HomePage(driver).clickSviAlati();
 
-        new VascularAge(driver).setPolMuski();
-        new VascularAge(driver).setStarost();
-        new VascularAge(driver).setNepusac();
-        new VascularAge(driver).setPritisak120139();
-        new VascularAge(driver).setHDLHolesterol();
-        new VascularAge(driver).getVaskularnaStarost();
+            new Tools(driver).clickKalkulatorVaskularneStarosti();
+
+            new VascularAge(driver).setPolMuski();
+            new VascularAge(driver).setStarost();
+            new VascularAge(driver).setNepusac();
+            new VascularAge(driver).setPritisak120139();
+            new VascularAge(driver).setHDLHolesterol();
+            new VascularAge(driver).getVaskularnaStarostM();
+            new VascularAge(driver).getRizikM();
+
    }
 
-    @Test
+    @Test(enabled = true)
     @Description("Prijava i provera Vaskularne starosti- Žena")
     public void vascularAgeZ() throws Exception {
-        try{
+
             new HomePage(driver).acceptCoocies();
             new HomePage(driver).clickSviAlati();
 
@@ -66,12 +69,8 @@ public class Login extends BaseTest {
             new VascularAge(driver).setNepusac();
             new VascularAge(driver).setPritisak120139();
             new VascularAge(driver).setHDLHolesterol();
-            new VascularAge(driver).getVaskularnaStarost();
-        }
-        catch (Exception ex) {
-        }
-
-
+            new VascularAge(driver).getVaskularnaStarostZ();
+            new VascularAge(driver).getRizikZ();
     }
 
 }
