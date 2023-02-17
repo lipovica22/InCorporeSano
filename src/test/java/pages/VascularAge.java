@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -42,66 +43,84 @@ public class VascularAge extends BasePage{
     WebElement Pritisak160179;
     @FindBy(id="react-select-2-placeholder")
     WebElement HDLHolesterol;
-    @FindBy(id="react-select-2-input")
-    WebElement HDLHolesterolValue;
+    @FindBy(xpath="//*[@id='react-select-2-option-1']/span")
+    WebElement HDLHolesterolList;
 
     @FindBy(id=".sc-eKBdFk.cxZmQh")
     WebElement StampaPDF;
 
-    public void setPolMuski() throws Exception {
-        click(Musko);
-    }
-    public void getOdabraniPol() throws Exception {
-
-    }
-    public void setPolZenski() throws Exception {
-        click(Zensko);
+    public void setPol(String pol) throws Exception {
+        if (pol != "Muško"){
+            click(Musko);
+        }else {
+            click(Zensko);
+        }
     }
 
-    public void setStarost() throws Exception {
-        Starost.sendKeys("45");
+    public void setStarost(String starost) throws Exception {
+        Starost.sendKeys(starost);
     }
 
-    public void setNepusac() throws Exception {
-        click(Nepusac);
+    public void setPusac(String pusac) throws Exception {
+        if (pusac != "Pušač") {
+            click(Nepusac);
+        } else {
+            click(Pusac);
+        }
     }
 
-    public void setPusac() throws Exception {
-        click(Pusac);
-    }
 
-    public void setPritisak110119() throws Exception {
-        click(Pritisak110119);
+    public void setPritisak(String bloodPressure) throws Exception {
+        switch (bloodPressure) {
+            case "110-119": {
+                click(Pritisak110119);
+            }
+            break;
+            case "120-139": {
+                click(Pritisak120139);
+            }
+            break;
+            case "140-159": {
+                click(Pritisak140159);
+            }
+            break;
+            case "160-179": {
+                click(Pritisak160179);
+            }
+            break;
+            default:
+                break;
+        }
     }
-
-    public void setPritisak120139() throws Exception {
-        click(Pritisak120139);
-    }
-    public void setPritisak140159() throws Exception {
-        click(Pritisak140159);
-    }
-    public void setPritisak160179() throws Exception {
-        click(Pritisak160179);
-    }
-    public void setHDLHolesterol() throws Exception {
+    public void setHDLHolesterol(String hdl) throws Exception {
         HDLHolesterol.click();
-        HDLHolesterolValue.sendKeys("4,0–4,9 mmol/L (155–190 mg/dL)");
+
+        switch (hdl){
+
+            case "3,0–3,9 mmol/L (116–151 mg/dL)": {
+                driver.findElement(By.xpath("//*[@id='react-select-2-option-0']/span")).click();
+            }break;
+            case "4,0–4,9 mmol/L (155–190 mg/dL)": {
+                driver.findElement(By.xpath("//*[@id='react-select-2-option-1']/span")).click();
+            }break;
+            case "5,0–5,9 mmol/L (193–228 mg/dL)": {
+                driver.findElement(By.xpath("//*[@id='react-select-2-option-2']/span")).click();
+            }break;
+            case "6,0–6,9 mmol/L (232–267 mg/dL)": {
+                driver.findElement(By.xpath("//*[@id='react-select-2-option-3']/span")).click();
+            }break;
+            default:
+                break;
+        }
     }
-    public void getVaskularnaStarostM() throws Exception {
+
+    public void getVaskularnaStarost(String vaskularnaStarostRezultat) throws Exception {
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight)");
-        Assert.assertTrue(VaskularnaStarost.getText().equals("Vaskularna starost: 47 godina"));
+        Assert.assertTrue(VaskularnaStarost.getText().equals(vaskularnaStarostRezultat));
     }
-    public void getVaskularnaStarostZ() throws Exception {
+
+    public void getRizik(String rizik) throws Exception {
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight)");
-        Assert.assertTrue(VaskularnaStarost.getText().equals("Vaskularna starost: 48 godina"));
-    }
-    public void getRizikM() throws Exception {
-        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight)");
-        String rizik = Rizik.getText();
-        Assert.assertTrue(Rizik.getText().equals("Rizik SCORE: 5 %"));
-    }
-    public void getRizikZ() throws Exception {
-        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, -document.body.scrollHeight)");
-        Assert.assertTrue(Rizik.getText().equals("Rizik SCORE: 4 %"));
+        Assert.assertTrue(Rizik.getText().equals(rizik));
     }
 }

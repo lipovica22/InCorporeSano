@@ -5,9 +5,9 @@
 
     <parameter name="browser" value="CHROME"/>
     <parameter name="quit" value="yes"/>
-    <parameter name="env" value="HomePage"/>
+    <parameter name="env" value="production"/>
 
-    <test name="VascularAge">
+    <test name="Mediately">
 
         <classes>
             <class name="tests.Login"/>

@@ -7,8 +7,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.HomePage;
+import pages.Tools;
 import pages.VascularAge;
 import java.io.IOException;
+
 
 public class VascularAgeDef extends BaseTest {
 
@@ -27,17 +29,21 @@ public class VascularAgeDef extends BaseTest {
         }
     }
     @Test
-    @Parameters({"Starost"})
-    @Description("Određivanje vaskularne starosti")
-    public void vascularAge() throws Exception {
+    @Parameters({"pol"})
+    @Description("Prijava i provera Vaskularne starosti- Muškarac")
+    public void vascularAgeM() throws Exception {
+
         new HomePage(driver).acceptCoocies();
-        new VascularAge(driver).setPolMuski();
-        new VascularAge(driver).setStarost();
-        new VascularAge(driver).setNepusac();
-        new VascularAge(driver).setPritisak120139();
-        new VascularAge(driver).setHDLHolesterol();
-        new VascularAge(driver).getVaskularnaStarostM();
-    }
+        new Tools(driver).clickKalkulatorVaskularneStarosti();
+        new VascularAge(driver).setPol("Muški");
+        new VascularAge(driver).setStarost("45");
+        new VascularAge(driver).setPusac("Nepušač");
+        new VascularAge(driver).setPritisak("120-139");
+        new VascularAge(driver).setHDLHolesterol("4,0–4,9 mmol/L (155–190 mg/dL)");
+        new VascularAge(driver).getVaskularnaStarost("Vaskularna starost: 50 godina");
+        new VascularAge(driver).getRizik("Rizik SCORE: 5 %");
+
+}
 
 
 

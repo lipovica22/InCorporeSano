@@ -32,23 +32,12 @@ public class BaseTest {
     }
 
     public void openApp(String env) throws Exception {
-        //env = env.toLowerCase();
+        env = env.toLowerCase();
         switch (env) {
-            case "HomePage": {
+            case "production": {
                 driver.get("https://mediately.co/rs");
             }
             break;
-
-            case "VaskularnaStarost": {
-                driver.get("https://mediately.co/rs/tools/VascularAgeVeryHigh");
-            }
-            break;
-            case "BMI": {
-                driver.get("https://mediately.co/rs/tools/VascularAgeVeryHigh");
-            }
-            break;
-            default:
-                driver.get("https://mediately.co/rs");
         }
     }
     public void takeScreenshot(String fileName) throws IOException {

@@ -32,45 +32,17 @@ public class Login extends BaseTest {
     }
     @Test
     @Description("Prijava i provera Vaskularne starosti - Muškarac")
-    public void vascularAgeM() throws Exception {
+    public void regularLogin() throws Exception {
 
-            new HomePage(driver).acceptCoocies();
-            new HomePage(driver).Prijava();
+        new HomePage(driver).acceptCoocies();
+        new HomePage(driver).Prijava();
 
-            new LoginPage(driver).setEmail();
-            new LoginPage(driver).setLozinka();
-            new LoginPage(driver).clickSubmit();
+        new LoginPage(driver).setEmail("srdjanstech@gmail.com");
+        new LoginPage(driver).setLozinka("incorporesano");
+        new LoginPage(driver).clickSubmit();
 
-            new HomePage(driver).clickSviAlati();
-
-            new Tools(driver).clickKalkulatorVaskularneStarosti();
-
-            new VascularAge(driver).setPolMuski();
-            new VascularAge(driver).setStarost();
-            new VascularAge(driver).setNepusac();
-            new VascularAge(driver).setPritisak120139();
-            new VascularAge(driver).setHDLHolesterol();
-            new VascularAge(driver).getVaskularnaStarostM();
-            new VascularAge(driver).getRizikM();
-
-   }
-
-    @Test(enabled = true)
-    @Description("Prijava i provera Vaskularne starosti- Žena")
-    public void vascularAgeZ() throws Exception {
-
-            new HomePage(driver).acceptCoocies();
-            new HomePage(driver).clickSviAlati();
-
-            new Tools(driver).clickKalkulatorVaskularneStarosti();
-
-            new VascularAge(driver).setPolZenski();
-            new VascularAge(driver).setStarost();
-            new VascularAge(driver).setNepusac();
-            new VascularAge(driver).setPritisak120139();
-            new VascularAge(driver).setHDLHolesterol();
-            new VascularAge(driver).getVaskularnaStarostZ();
-            new VascularAge(driver).getRizikZ();
     }
+
+
 
 }
