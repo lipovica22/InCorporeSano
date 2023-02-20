@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class VascularAge extends BasePage{
@@ -21,7 +23,8 @@ public class VascularAge extends BasePage{
     @FindBy(xpath="//*[contains(text(),'Rizik')]")
     WebElement Rizik;
 
-
+    @FindBy(css=".sc-ehVsHJ")
+    WebElement Kalkulator;
 
     @FindBy(xpath ="//div[text()='Muško']")
     WebElement Musko;
@@ -34,7 +37,7 @@ public class VascularAge extends BasePage{
     @FindBy(xpath ="//div[text()='Pušač']")
     WebElement Pusac;
     @FindBy(css=".list-group-item[data-id='bloodPressure1']")
-    WebElement Pritisak110119;
+    WebElement Pritisak100119;
     @FindBy(css=".list-group-item[data-id='bloodPressure2']")
     WebElement Pritisak120139;
     @FindBy(css=".list-group-item[data-id='bloodPressure3']")
@@ -50,10 +53,15 @@ public class VascularAge extends BasePage{
     WebElement StampaPDF;
 
     public void setPol(String pol) throws Exception {
-        if (pol != "Muško"){
-            click(Musko);
-        }else {
-            click(Zensko);
+       switch (pol) {
+            case "Muško": {
+                click(Musko);
+            }break;
+            case "Žensko": {
+                click(Zensko);
+            }break;
+            default:
+                break;
         }
     }
 
@@ -62,18 +70,25 @@ public class VascularAge extends BasePage{
     }
 
     public void setPusac(String pusac) throws Exception {
-        if (pusac != "Pušač") {
-            click(Nepusac);
-        } else {
-            click(Pusac);
+        switch (pusac) {
+            case "Pušač": {
+                click(Pusac);
+            }break;
+            case "Nepušač": {
+                click(Nepusac);
+            }break;
+            default:
+                break;
         }
     }
+    public void chackIsClickable() throws Exception {
+        new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(Kalkulator));
 
-
+    }
     public void setPritisak(String bloodPressure) throws Exception {
         switch (bloodPressure) {
-            case "110-119": {
-                click(Pritisak110119);
+            case "100-119": {
+                click(Pritisak100119);
             }
             break;
             case "120-139": {

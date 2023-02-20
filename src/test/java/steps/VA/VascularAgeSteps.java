@@ -1,11 +1,14 @@
 package steps.VA;
 
+import excel.ExcelReader;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
 import pages.HomePage;
@@ -14,11 +17,12 @@ import pages.VascularAge;
 import tests.BaseTest;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class VascularAgeSteps extends BaseTest {
     String browser = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("browser");
     String quit = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("quit");
-
+Map<String,String> data;
     @Before
     public void setup() throws Exception{
         initialization(browser);
@@ -47,7 +51,7 @@ public class VascularAgeSteps extends BaseTest {
     @When("click on AllTools")
     public void clickOnAllTools() throws Exception{
         new HomePage(driver).clickSviAlati();
-        Thread.sleep(2000);
+        Thread.sleep(3000);
     }
 
     @Then("page is tools")
@@ -58,12 +62,12 @@ public class VascularAgeSteps extends BaseTest {
     @And("click on VascularAgeCalculator")
     public void clickOnVascularAgeCalculator() throws Exception{
         new Tools(driver).clickKalkulatorVaskularneStarosti();
-        Thread.sleep(2000);
+        Thread.sleep(3000);
     }
     @Then("page is VascularAgeVeryHigh")
-    public void pageIsVascularAgeVeryHigh() {
+    public void pageIsVascularAgeVeryHigh() throws Exception {
+        new VascularAge(driver).chackIsClickable();
         Assert.assertEquals(driver.getCurrentUrl(), "https://mediately.co/rs/tools/VascularAgeVeryHigh");
-
     }
     @Then("set gender {string}")
     public void setGender(String pol) throws Exception{
@@ -89,13 +93,54 @@ public class VascularAgeSteps extends BaseTest {
         new VascularAge(driver).setHDLHolesterol(hdl);
     }
 
-    @Then("check vaslukar age {string}")
-    public void checkVaslukarAge(String vaskularnaStarostRezultat) throws Exception {
+    @Then("check vascular age {string}")
+    public void checkVascularAge(String vaskularnaStarostRezultat) throws Exception {
         new VascularAge(driver).getVaskularnaStarost(vaskularnaStarostRezultat);
     }
 
     @And("check risk {string}")
     public void checkRisk(String rizik) throws Exception {
         new VascularAge(driver).getRizik(rizik);
+    }
+
+    @Given("open app ICD and load data from {string} {string} {string}")
+    public void openAppICDAndLoadDataFrom(String file, String sheet, String row) throws IOException {
+        driver.get("https://mediately.co/rs");
+       data = new ExcelReader().getRowData(file,sheet,Integer.parseInt(row));
+    }
+
+    @Then("set gender")
+    public void setGender() throws Exception{
+        new VascularAge(driver).setPol(data.get("Pol"));
+    }
+
+    @And("set age")
+    public void setAge() throws Exception{
+        new VascularAge(driver).setStarost(data.get("Starost"));
+    }
+
+    @And("choose smokerNonsmoker")
+    public void chooseSmokerNonsmoker()throws Exception {
+        new VascularAge(driver).setPusac(data.get("PusackiStatus"));
+    }
+    @And("choose blood pressure")
+    public void chooseBloodPressure() throws Exception{
+        new VascularAge(driver).setPritisak(data.get("KrvniPritisak"));
+    }
+
+    @And("choose HDL")
+    public void chooseHDL() throws Exception{
+        new VascularAge(driver).setHDLHolesterol(data.get("HDLHolesterol"));
+    }
+
+
+    @Then("check vascular age")
+    public void checkVascularAge() throws Exception {
+        new VascularAge(driver).getVaskularnaStarost(data.get("VaskularnaStarost"));
+    }
+
+    @And("check risk")
+    public void checkRisk() throws Exception {
+        new VascularAge(driver).getRizik(data.get("Rizik"));
     }
 }
