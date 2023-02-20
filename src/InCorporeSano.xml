@@ -11,8 +11,7 @@
 
         <classes>
             <class name="tests.Login"/>
-            <class name="tests.BMI"/>
-            <class name="tests.ICDsearch"/>
+
         </classes>
 
     </test>

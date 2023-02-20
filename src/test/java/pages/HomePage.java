@@ -17,7 +17,8 @@ public class HomePage extends BasePage{
     }
     @FindBy(css=".navbar-nav>a[href$='icd']")
     WebElement ICD;
-    @FindBy (css="div.sc-e9f474d6-3>button:first-child>div:first-child")
+
+    @FindBy (xpath="//span[contains(text(),'Prijava')]")
     WebElement Prijava;
 
     @FindBy(xpath="//button[text()='Razumem']")

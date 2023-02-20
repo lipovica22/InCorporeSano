@@ -67,8 +67,4 @@ public class LoginSteps extends BaseTest {
         new LoginPage(driver).user();
     }
 
-
-    @When("")
-    public void clickOnBMITool() {
-    }
 }

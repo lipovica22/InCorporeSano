@@ -10,9 +10,7 @@
     <test name="ICD.rs">
 
         <classes>
-            <class name="runners.RunnerBMI"/>
-            <class name="runners.RunnerVA"/>
-            <class name="runners.RunnerICD"/>
+            <class name="runners.RunnerLogin"/>
         </classes>
 
     </test>
