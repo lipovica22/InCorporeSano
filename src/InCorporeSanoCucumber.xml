@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="ICD" thread-count="3" data-provider-thread-count="3">
+<suite name="ICD" thread-count="1" data-provider-thread-count="1">
 
     <parameter name="browser" value="CHROME"/>
-    <parameter name="quit" value="yes"/>
+    <parameter name="quit" value="no"/>
     <parameter name="env" value="production"/>
 
     <test name="ICD.rs">
 
         <classes>
-            <class name="runners.Runner"/>
+            <class name="runners.RunnerBMI"/>
         </classes>
 
     </test>

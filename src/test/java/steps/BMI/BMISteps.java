@@ -1,4 +1,4 @@
-package steps.Login;
+package steps.BMI;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -8,14 +8,13 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 import org.testng.Reporter;
+import pages.BMIPage;
 import pages.HomePage;
-import pages.LoginPage;
 import tests.BaseTest;
 
 import java.io.IOException;
 
-
-public class LoginSteps extends BaseTest {
+public class BMISteps extends BaseTest {
     String browser = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("browser");
     String quit = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("quit");
 
@@ -31,44 +30,40 @@ public class LoginSteps extends BaseTest {
             quit();
         }
     }
-
     @Given("Open app ICD")
     public void OpenAppICD()  {
         driver.get("https://mediately.co/rs");
     }
-
-    @When("accept cookies1")
-    public void acceptCookies1() throws Exception {
+    @And("accept cookies")
+    public void acceptCookies() throws Exception {
         new HomePage(driver).acceptCoocies();
     }
-
-    @And("click on Login")
-    public void clickOnLogin() throws Exception{
-        new HomePage(driver).Prijava();
+    @When("click on BMI tool")
+    public void clickOnBMITools() throws Exception{
+        new HomePage(driver).clickBMI();
+        Thread.sleep(3000);
+    }
+    @Then("page is BMI")
+    public void pageIsBMI() {
+        Assert.assertEquals(driver.getCurrentUrl(), "https://mediately.co/rs/tools/BMI");
     }
 
-    @And("enter email {string}")
-    public void enterEmail(String email) throws Exception{
-        new LoginPage(driver).setEmail(email);
+    @And("input weight")
+    public void inputWeight() throws Exception {
+        new BMIPage(driver).setTezina();
+    }
+    @And("input height")
+    public void inputHeight()throws Exception {
+        new BMIPage(driver).setVisina();
     }
 
-    @And("enter password {string}")
-    public void enterPassword(String password) throws Exception {
-        new LoginPage(driver).setLozinka(password);
+    @Then("BMI change colour in green")
+    public void BMIChangeColourInGreen()throws Exception {
+        new BMIPage(driver).opisRezultata();
     }
-    @And("click on Submit button")
-    public void clickOnSubmitButton() throws Exception{
-        new LoginPage(driver).clickSubmit();
-    }
-
-    @Then("Logged in")
-    public void loggedIn() throws Exception {
-        Assert.assertEquals(driver.getCurrentUrl(), "https://mediately.co/rs");
-        new LoginPage(driver).user();
-    }
-
-
-    @When("")
-    public void clickOnBMITool() {
+    @And("get index of BMI")
+    public void getIndexOfBMI()throws Exception {
+        new BMIPage(driver).rezultat();
     }
 }
+

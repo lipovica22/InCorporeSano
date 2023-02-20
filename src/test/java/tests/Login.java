@@ -31,7 +31,7 @@ public class Login extends BaseTest {
         }
     }
     @Test
-    @Description("Prijava i provera Vaskularne starosti - Muškarac")
+    @Description("Login")
     public void regularLogin() throws Exception {
 
         new HomePage(driver).acceptCoocies();

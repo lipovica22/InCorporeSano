@@ -18,9 +18,9 @@ public class BMIPage extends BasePage{
     WebElement Tezina;
     @FindBy(css="input[placeholder='1–250']")
     WebElement Visina;
-    @FindBy(css=".sc-hlLBRy")
+    @FindBy(css=".sc-caPbAK")
     WebElement OpisRezultata;
-    @FindBy(css=".kDRAbD")
+    @FindBy(css=".sc-gUJyNl")
     WebElement Rezultat;
 
     public void setTezina() throws Exception {
@@ -31,6 +31,7 @@ public class BMIPage extends BasePage{
     }
     public void opisRezultata() throws Exception {
         Assert.assertTrue(OpisRezultata.getText().equals("Normal weight"));
+
     }
     public void rezultat() throws Exception {
         Assert.assertTrue(Rezultat.getText().equals("24,93"));
