@@ -1,20 +1,18 @@
-package steps.BMI;
+package steps.ICD;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
-import org.testng.Assert;
 import org.testng.Reporter;
-import pages.BMIPage;
 import pages.HomePage;
+import pages.ICD;
 import tests.BaseTest;
 
 import java.io.IOException;
 
-public class BMISteps extends BaseTest {
+public class ICDSearch extends BaseTest {
     String browser = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("browser");
     String quit = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("quit");
 
@@ -30,6 +28,7 @@ public class BMISteps extends BaseTest {
             quit();
         }
     }
+
     @Given("Open app ICD")
     public void OpenAppICD()  {
         driver.get("https://mediately.co/rs");
@@ -39,32 +38,31 @@ public class BMISteps extends BaseTest {
         new HomePage(driver).acceptCoocies();
     }
 
-    @When("click on BMI tool")
-    public void clickOnBMITools() throws Exception{
-        new HomePage(driver).clickBMI();
-        Thread.sleep(3000);
-    }
-    @Then("page is BMI")
-    public void pageIsBMI() {
-        Assert.assertEquals(driver.getCurrentUrl(), "https://mediately.co/rs/tools/BMI");
+    @Then("input a diagnose index")
+    public void inputADiagnoseInex() throws Exception{
+        new ICD(driver).setPretrazivanje();
+
     }
 
-    @And("input weight")
-    public void inputWeight() throws Exception {
-        new BMIPage(driver).setTezina();
-    }
-    @And("input height")
-    public void inputHeight()throws Exception {
-        new BMIPage(driver).setVisina();
+    @And("check diagnose")
+    public void checkDiagnose() throws Exception{
+        new ICD(driver).clickDG();
     }
 
-    @Then("BMI change colour in green")
-    public void BMIChangeColourInGreen()throws Exception {
-        new BMIPage(driver).opisRezultata();
+    @Then("get description")
+    public void getDescription() throws Exception{
+        new ICD(driver).getNapomena();
     }
-    @And("get index of BMI")
-    public void getIndexOfBMI()throws Exception {
-        new BMIPage(driver).rezultat();
+
+    @And("click on MKB{int}")
+    public void clickOnMKB(int arg0) throws Exception{
+        new HomePage(driver).clickICD();
     }
+
+    @Then("page is ICD")
+    public void pageIsICD() {
+        driver.get("https://mediately.co/rs/icd");
+    }
+
 }
 

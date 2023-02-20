@@ -11,6 +11,8 @@
 
         <classes>
             <class name="runners.RunnerBMI"/>
+            <class name="runners.RunnerVA"/>
+            <class name="runners.RunnerICD"/>
         </classes>
 
     </test>

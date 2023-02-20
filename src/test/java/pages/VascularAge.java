@@ -23,7 +23,8 @@ public class VascularAge extends BasePage{
     @FindBy(xpath="//*[contains(text(),'Rizik')]")
     WebElement Rizik;
 
-    @FindBy(css=".sc-ehVsHJ")
+    @FindBy(xpath="//h1[contains(text(),'Kalkulator vaskularne starosti')]")
+
     WebElement Kalkulator;
 
     @FindBy(xpath ="//div[text()='Muško']")
@@ -36,13 +37,13 @@ public class VascularAge extends BasePage{
     WebElement Nepusac;
     @FindBy(xpath ="//div[text()='Pušač']")
     WebElement Pusac;
-    @FindBy(css=".list-group-item[data-id='bloodPressure1']")
+    @FindBy(xpath="//*[contains(text(),'100–119')]")
     WebElement Pritisak100119;
-    @FindBy(css=".list-group-item[data-id='bloodPressure2']")
+    @FindBy(xpath="//*[contains(text(),'120–139')]")
     WebElement Pritisak120139;
-    @FindBy(css=".list-group-item[data-id='bloodPressure3']")
+    @FindBy(xpath="//*[contains(text(),'140–159')]")
     WebElement Pritisak140159;
-    @FindBy(css=".list-group-item[data-id='bloodPressure4']")
+    @FindBy(xpath="//*[contains(text(),'160–179')]")
     WebElement Pritisak160179;
     @FindBy(id="react-select-2-placeholder")
     WebElement HDLHolesterol;

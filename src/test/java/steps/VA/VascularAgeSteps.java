@@ -20,7 +20,9 @@ import java.util.Map;
 public class VascularAgeSteps extends BaseTest {
     String browser = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("browser");
     String quit = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("quit");
-Map<String,String> data;
+    Map<String,String> data;
+
+
     @Before
     public void setup() throws Exception{
         initialization(browser);
@@ -38,8 +40,8 @@ Map<String,String> data;
     //    takeScreenshot("slika" + System.currentTimeMillis());
     //    Thread.sleep(1000);
     // }
-    @Given("open app ICD")
-    public void open_App_ICD()  {
+    @Given("Open app ICD")
+    public void OpenAppICD()  {
         driver.get("https://mediately.co/rs");
     }
     @And("accept cookies")

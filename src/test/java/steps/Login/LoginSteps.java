@@ -37,8 +37,8 @@ public class LoginSteps extends BaseTest {
         driver.get("https://mediately.co/rs");
     }
 
-    @When("accept cookies1")
-    public void acceptCookies1() throws Exception {
+    @When("accept cookies")
+    public void acceptCookies() throws Exception {
         new HomePage(driver).acceptCoocies();
     }
 
